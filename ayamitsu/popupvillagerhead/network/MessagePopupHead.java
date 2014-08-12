@@ -20,7 +20,6 @@ public class MessagePopupHead implements IMessage, IMessageHandler<MessagePopupH
 
     public int entityId = 0;
     public boolean data = false;
-    public boolean sent = false;
 
     public MessagePopupHead() {}
 
@@ -35,16 +34,8 @@ public class MessagePopupHead implements IMessage, IMessageHandler<MessagePopupH
         this.entityId = nbt.getInteger("entityId");
         this.data = nbt.getBoolean("PoppedupHead");
 
-        System.out.println("puts " + this.entityId + this.data);
-
-        for (Entity entity : (List<Entity>)((ClientProxy)PopupVillagerHead.proxy).getWorld().getLoadedEntityList()) {
-            if (entity.getEntityId() == this.entityId) {
-                entity.getEntityData().setBoolean("PoppedupHead", this.data);
-                System.out.println("puts setBoolean");
-            }
-        }
-
-        System.out.println("puts fromBytes");
+       // System.out.println("<Client>puts " + this.entityId + " " + this.data);
+       // System.out.println("puts fromBytes");
     }
 
     @Override
@@ -54,11 +45,21 @@ public class MessagePopupHead implements IMessage, IMessageHandler<MessagePopupH
         nbt.setBoolean("PoppedupHead", this.data);
         ByteBufUtils.writeTag(buf, nbt);
 
-        System.out.println("puts toBytes");
+        //System.out.println("<Server>puts " + this.entityId + " " + this.data);
+        //System.out.println("puts toBytes");
     }
 
     @Override
     public IMessage onMessage(MessagePopupHead message, MessageContext ctx) {
+        //System.out.println("puts onMessage");
+
+        for (Entity entity : (List<Entity>)((ClientProxy)PopupVillagerHead.proxy).getWorld().getLoadedEntityList()) {
+            if (entity.getEntityId() == message.entityId) {
+                entity.getEntityData().setBoolean("PoppedupHead", message.data);
+                //System.out.println("puts setBoolean");
+            }
+        }
+
         return null;
     }
 }

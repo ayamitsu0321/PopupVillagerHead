@@ -33,7 +33,6 @@ public class RenderPoppedupVillagerHead extends RenderLiving {
 
         for (ModelRenderer model : (List<ModelRenderer>) this.villagerModel.boxList) {
             if (model == this.villagerModel.villagerHead || model == this.villagerModel.villagerNose) {
-                //model.offsetY += 5.0F;// TODO
                 continue;
             }
 
