@@ -11,20 +11,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
  */
 public class SpawnVillagerHandler {
 
-    public SpawnVillagerHandler() {
-    }
-
-    /*@SubscribeEvent
-    public void f(EntityJoinWorldEvent event) {
-        if (!event.entity.worldObj.isRemote && event.entity instanceof EntityVillager && event.entity.getEntityData().getBoolean("PoppedupHead")) {
-            EntityVillager villager = (EntityVillager)event.entity;
-            this.synchronizeNBT(villager);
-        }
-
-        if (event.entity instanceof EntityVillager) {
-            System.out.println("<" + (event.entity.worldObj.isRemote ? "Client" : "Server" ) + ">" + "puts poppedup:" + event.entity.getEntityData().getBoolean("PoppedupHead"));
-        }
-    }*/
+    public SpawnVillagerHandler() {}
 
     public void synchronizeNBT(EntityVillager villager) {
         PacketHandler.INSTANCE.sendToAll(new MessagePopupHead(villager));
@@ -36,10 +23,6 @@ public class SpawnVillagerHandler {
             EntityVillager villager = (EntityVillager) event.entity;
             this.synchronizeNBT(villager);
         }
-
-        //if (event.entity instanceof EntityVillager) {
-        //    System.out.println("<" + (event.entity.worldObj.isRemote ? "Client" : "Server") + ">" + "puts poppedup:" + event.entity.getEntityData().getBoolean("PoppedupHead"));
-        //}
     }
 
 }

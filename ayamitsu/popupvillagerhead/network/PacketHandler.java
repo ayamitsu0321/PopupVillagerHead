@@ -13,7 +13,6 @@ public class PacketHandler {
 
     public static void init() {
         INSTANCE.registerMessage(MessagePopupHead.class, MessagePopupHead.class, 0, Side.CLIENT);
-        INSTANCE.registerMessage(MessagePopupHead.class, MessagePopupHead.class, 1, Side.SERVER);
     }
 
 }

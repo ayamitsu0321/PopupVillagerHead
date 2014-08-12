@@ -19,15 +19,18 @@ public class AttackedVillagerHandler {
     @SubscribeEvent
     public void f(AttackEntityEvent event) {
         // target's render class must be 'RenderPopupHeadVillager'
-        if (event.target != null && event.target instanceof EntityVillager && !event.target.getEntityData().getBoolean("PoppedupHead") && RenderManager.instance.getEntityRenderObject(event.target).getClass() == RenderPopupHeadVillager.class) {
-            EntityVillager villager = (EntityVillager) event.target;
+        if (event.target != null && event.target instanceof EntityVillager && !((EntityVillager)event.target).isChild() && !event.target.getEntityData().getBoolean("PoppedupHead") && RenderManager.instance.getEntityRenderObject(event.target).getClass() == RenderPopupHeadVillager.class) {
+            EntityVillager villager = (EntityVillager)event.target;
             NBTTagCompound nbt = event.target.getEntityData();
             nbt.setBoolean("PoppedupHead", true);
             EntityPoppedupVillagerHead head = new EntityPoppedupVillagerHead(event.entityPlayer.worldObj);
-            head.setLocationAndAngles(villager.posX, villager.posY, villager.posZ, villager.rotationYaw, villager.rotationPitch);
+            // hard coding: 1.6F
+            head.motionY += 1.6F;
             head.setVillager(villager);
 
             if (!event.entityPlayer.worldObj.isRemote) {
+                // hard coding: 1.175D(1.8F - 0.625F)
+                head.setLocationAndAngles(villager.posX, villager.posY + 1.175D, villager.posZ, villager.rotationYaw, villager.rotationPitch);
                 event.entityPlayer.worldObj.spawnEntityInWorld(head);
             }
         }

@@ -6,10 +6,8 @@ import ayamitsu.popupvillagerhead.entity.EntityPoppedupVillagerHead;
 import ayamitsu.popupvillagerhead.event.AttackedVillagerHandler;
 import ayamitsu.popupvillagerhead.event.SpawnVillagerHandler;
 import ayamitsu.popupvillagerhead.network.PacketHandler;
-import ayamitsu.util.proxy.AbstractProxy;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.passive.EntityVillager;
@@ -24,9 +22,6 @@ public class PopupVillagerHead {
 
     @Mod.Instance("ayamitsu.popupvillagerhead")
     public static PopupVillagerHead instance;
-
-    @SidedProxy(clientSide = "ayamitsu.popupvillagerhead.client.ClientProxy", serverSide = "ayamitsu.popupvillagerhead.server.ServerProxy")
-    public static AbstractProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {

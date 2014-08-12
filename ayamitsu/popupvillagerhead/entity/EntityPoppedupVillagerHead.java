@@ -1,5 +1,6 @@
 package ayamitsu.popupvillagerhead.entity;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,7 +15,7 @@ public class EntityPoppedupVillagerHead extends EntityLiving {
 
     public EntityPoppedupVillagerHead(World world) {
         super(world);
-        //this.setSize();// TODO
+        this.setSize(0.6F, 0.625F);// TODO
     }
 
     public EntityPoppedupVillagerHead(World world, EntityVillager villager) {

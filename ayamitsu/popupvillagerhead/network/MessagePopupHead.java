@@ -1,7 +1,6 @@
 package ayamitsu.popupvillagerhead.network;
 
-import ayamitsu.popupvillagerhead.PopupVillagerHead;
-import ayamitsu.popupvillagerhead.client.ClientProxy;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -33,9 +32,6 @@ public class MessagePopupHead implements IMessage, IMessageHandler<MessagePopupH
         NBTTagCompound nbt = ByteBufUtils.readTag(buf);
         this.entityId = nbt.getInteger("entityId");
         this.data = nbt.getBoolean("PoppedupHead");
-
-       // System.out.println("<Client>puts " + this.entityId + " " + this.data);
-       // System.out.println("puts fromBytes");
     }
 
     @Override
@@ -44,19 +40,15 @@ public class MessagePopupHead implements IMessage, IMessageHandler<MessagePopupH
         nbt.setInteger("entityId", this.entityId);
         nbt.setBoolean("PoppedupHead", this.data);
         ByteBufUtils.writeTag(buf, nbt);
-
-        //System.out.println("<Server>puts " + this.entityId + " " + this.data);
-        //System.out.println("puts toBytes");
     }
 
     @Override
     public IMessage onMessage(MessagePopupHead message, MessageContext ctx) {
-        //System.out.println("puts onMessage");
+        for (Entity entity : (List<Entity>)FMLClientHandler.instance().getWorldClient().getLoadedEntityList()) {
 
-        for (Entity entity : (List<Entity>)((ClientProxy)PopupVillagerHead.proxy).getWorld().getLoadedEntityList()) {
+            // use param(message)
             if (entity.getEntityId() == message.entityId) {
                 entity.getEntityData().setBoolean("PoppedupHead", message.data);
-                //System.out.println("puts setBoolean");
             }
         }
 
