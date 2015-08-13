@@ -1,14 +1,14 @@
 package ayamitsu.popupvillagerhead.network;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 import java.util.List;
 
@@ -20,7 +20,8 @@ public class MessagePopupHead implements IMessage, IMessageHandler<MessagePopupH
     public int entityId = 0;
     public boolean data = false;
 
-    public MessagePopupHead() {}
+    public MessagePopupHead() {
+    }
 
     public MessagePopupHead(EntityVillager villager) {
         this.entityId = villager.getEntityId();
@@ -42,6 +43,7 @@ public class MessagePopupHead implements IMessage, IMessageHandler<MessagePopupH
         ByteBufUtils.writeTag(buf, nbt);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public IMessage onMessage(MessagePopupHead message, MessageContext ctx) {
         for (Entity entity : (List<Entity>)FMLClientHandler.instance().getWorldClient().getLoadedEntityList()) {

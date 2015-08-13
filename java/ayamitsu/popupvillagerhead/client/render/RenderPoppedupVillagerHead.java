@@ -1,12 +1,13 @@
 package ayamitsu.popupvillagerhead.client.render;
 
 import ayamitsu.popupvillagerhead.entity.EntityPoppedupVillagerHead;
-import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelVillager;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 import java.util.List;
 
@@ -24,14 +25,14 @@ public class RenderPoppedupVillagerHead extends RenderLiving {
 
     protected ModelVillager villagerModel;
 
-    public RenderPoppedupVillagerHead() {
-        super(new ModelVillager(0.0F), 0.25F);
-        this.villagerModel = (ModelVillager) this.mainModel;
+    public RenderPoppedupVillagerHead(RenderManager manager) {
+        super(manager, new ModelVillager(0.0F), 0.25F);
+        this.villagerModel = (ModelVillager)this.mainModel;
 
         this.villagerModel.villagerHead.offsetY = 1.5F;
         this.villagerModel.villagerNose.offsetY = 0.03125F;
 
-        for (ModelRenderer model : (List<ModelRenderer>) this.villagerModel.boxList) {
+        for (ModelRenderer model : (List<ModelRenderer>)this.villagerModel.boxList) {
             if (model == this.villagerModel.villagerHead || model == this.villagerModel.villagerNose) {
                 continue;
             }
@@ -59,6 +60,6 @@ public class RenderPoppedupVillagerHead extends RenderLiving {
 
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
-        return this.getEntityTexture((EntityPoppedupVillagerHead) entity);
+        return this.getEntityTexture((EntityPoppedupVillagerHead)entity);
     }
 }

@@ -1,8 +1,10 @@
 package ayamitsu.popupvillagerhead.entity;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.EntityAIWatchClosest2;
 import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -15,6 +17,8 @@ public class EntityPoppedupVillagerHead extends EntityLiving {
 
     public EntityPoppedupVillagerHead(World world) {
         super(world);
+        this.tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
+        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
         this.setSize(0.6F, 0.625F);// TODO
     }
 
@@ -32,10 +36,10 @@ public class EntityPoppedupVillagerHead extends EntityLiving {
         super.entityInit();
     }
 
-    @Override
+    /*@Override
     public boolean isAIEnabled() {
         return false;
-    }
+    }*/
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
