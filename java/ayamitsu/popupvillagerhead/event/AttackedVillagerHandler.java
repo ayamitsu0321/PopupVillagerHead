@@ -16,7 +16,7 @@ public class AttackedVillagerHandler {
 
     @SubscribeEvent
     public void f(AttackEntityEvent event) {
-        // target's render class must be 'RenderPopupHeadVillager'
+        // target's renderer class must be 'RenderPopupHeadVillager'
         if (event.target != null && event.target instanceof EntityVillager && !((EntityVillager)event.target).isChild() && !event.target.getEntityData().getBoolean("PoppedupHead")) {
             EntityVillager villager = (EntityVillager)event.target;
             NBTTagCompound nbt = event.target.getEntityData();
