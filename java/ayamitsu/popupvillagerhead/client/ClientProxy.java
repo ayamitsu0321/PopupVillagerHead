@@ -1,8 +1,8 @@
 package ayamitsu.popupvillagerhead.client;
 
 import ayamitsu.popupvillagerhead.AbstractProxy;
-import ayamitsu.popupvillagerhead.client.render.RenderPoppedupVillagerHead;
-import ayamitsu.popupvillagerhead.client.render.RenderPopupHeadVillager;
+import ayamitsu.popupvillagerhead.client.renderer.RenderPoppedupVillagerHead;
+import ayamitsu.popupvillagerhead.client.renderer.RenderPopupHeadVillager;
 import ayamitsu.popupvillagerhead.entity.EntityPoppedupVillagerHead;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.passive.EntityVillager;

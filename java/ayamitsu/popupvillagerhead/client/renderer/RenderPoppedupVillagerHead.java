@@ -1,4 +1,4 @@
-package ayamitsu.popupvillagerhead.client.render;
+package ayamitsu.popupvillagerhead.client.renderer;
 
 import ayamitsu.popupvillagerhead.entity.EntityPoppedupVillagerHead;
 import net.minecraft.client.model.ModelRenderer;

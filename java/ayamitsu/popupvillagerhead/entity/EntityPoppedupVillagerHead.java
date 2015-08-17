@@ -32,6 +32,44 @@ public class EntityPoppedupVillagerHead extends EntityLiving {
     }
 
     @Override
+    public boolean interact(EntityPlayer player) {
+        this.mountEntity(player);
+        return true;
+    }
+
+    @Override
+    public double getYOffset() {
+        return 0.55F;
+    }
+
+    @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+
+        if (this.ridingEntity != null) {
+            if (this.isAIEnabled()) {
+                this.setNoAI(true);
+            } else {
+                this.rotationYaw = this.ridingEntity.rotationYaw;
+                this.rotationYawHead = this.ridingEntity.rotationYaw;
+                this.rotationPitch = 0F;//this.ridingEntity.rotationPitch;
+            }
+        } else {
+            if (!this.isAIEnabled()) {
+                this.setNoAI(false);
+            }
+        }
+    }
+
+    /**
+     *  EntityLiving#isAIDisabled がprivateなのでつくった
+     * @return is AI enabled
+     */
+    protected boolean isAIEnabled() {
+        return this.dataWatcher.getWatchableObjectByte(15) == 0;
+    }
+
+    @Override
     protected void entityInit() {
         super.entityInit();
     }
