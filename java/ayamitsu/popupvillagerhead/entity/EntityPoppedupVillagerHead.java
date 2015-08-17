@@ -33,7 +33,17 @@ public class EntityPoppedupVillagerHead extends EntityLiving {
 
     @Override
     public boolean interact(EntityPlayer player) {
-        this.mountEntity(player);
+        // 騎乗
+        if (this.ridingEntity != null) {
+            if (this.ridingEntity == player) {
+                this.mountEntity(null);
+            } else {
+                this.mountEntity(player);
+            }
+        } else {
+            this.mountEntity(player);
+        }
+
         return true;
     }
 
