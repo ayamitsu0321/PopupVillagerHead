@@ -1,4 +1,4 @@
-package ayamitsu.popupvillagerhead.client.renderer;
+package ayamitsu.popupvillagerhead.client.render;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderVillager;

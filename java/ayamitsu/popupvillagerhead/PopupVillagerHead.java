@@ -13,17 +13,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 @Mod(
-        modid = PopupVillagerHead.MODID,
-        name = PopupVillagerHead.NAME,
-        version = PopupVillagerHead.VERSION
+        modid = "ayamitsu0321.popupvillagerhead",
+        name = "PopupVillagerHead",
+        version = "1.0.0"
 )
 public class PopupVillagerHead {
 
-    public static final String MODID = "popupvillagerhead";
-    public static final String NAME = "PopupVillagerHead";
-    public static final String VERSION = "1.1.0";
-
-    @Mod.Instance(PopupVillagerHead.MODID)
+    @Mod.Instance("ayamitsu.popupvillagerhead")
     public static PopupVillagerHead instance;
 
     @SidedProxy(clientSide = "ayamitsu.popupvillagerhead.client.ClientProxy", serverSide = "ayamitsu.popupvillagerhead.server.ServerProxy")
